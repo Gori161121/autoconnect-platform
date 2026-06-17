@@ -1,0 +1,46 @@
+openapi: 3.0.3
+
+info:
+  title: AutoConnect Platform API
+  description: API specification for customers, providers, bookings, marketplace analytics and matching.
+  version: 1.0.0
+
+servers:
+  - url: https://api.autoconnect.local
+
+paths:
+
+  /health:
+    get:
+      summary: Health Check
+      responses:
+        '200':
+          description: Service is running
+
+  /customers:
+    get:
+      summary: Get Customers
+      responses:
+        '200':
+          description: Customer list returned
+
+  /providers:
+    get:
+      summary: Get Providers
+      responses:
+        '200':
+          description: Provider list returned
+
+  /bookings:
+    get:
+      summary: Get Bookings
+      responses:
+        '200':
+          description: Booking list returned
+
+  /marketplace/summary:
+    get:
+      summary: Marketplace Summary
+      responses:
+        '200':
+          description: Marketplace summary returned
