@@ -1,286 +1,215 @@
 # AutoConnect
 
-### AI-Powered Marketplace Operating System
+### Building the Next Generation of Service Marketplaces
 
-AutoConnect is an intelligent marketplace operating system designed to connect customers, service providers, workflow automation, analytics, and artificial intelligence into a unified business ecosystem.
+AutoConnect is a marketplace operating system designed to connect customers, service providers, automation workflows, analytics, and intelligent matching into one platform.
 
-The platform transforms traditional service marketplaces into intelligent, automated, and data-driven environments.
-
----
-
-# Executive Summary
-
-Most service marketplaces struggle with fragmented communication, inefficient provider matching, manual coordination, inconsistent service delivery, and limited operational visibility.
-
-AutoConnect addresses these challenges by combining marketplace infrastructure, intelligent matching, workflow automation, analytics, and AI-powered decision support into a single platform.
-
-The objective is not only to connect customers and providers, but to create an intelligent marketplace ecosystem capable of optimizing service delivery at scale.
+The goal is to transform traditional service marketplaces into automated, data-driven, and intelligence-supported systems.
 
 ---
 
-# Business Vision
+## The Problem
 
-Build a next-generation Marketplace Operating System capable of managing:
+Service marketplaces often struggle with:
 
-* Customers
-* Providers
-* Service Networks
-* Bookings
-* Marketplace Operations
-* Workflow Automation
-* Business Intelligence
-* AI-Powered Recommendations
+- fragmented communication
+- manual booking processes
+- inefficient provider matching
+- weak operational visibility
+- inconsistent customer experience
+- limited marketplace analytics
 
-from a single platform.
+The challenge is not only connecting customers and providers.
 
----
-
-# Core Marketplace Domains
-
-## Customer Management
-
-Responsible for managing customer interactions and service requests.
-
-Features:
-
-* customer onboarding
-* service requests
-* booking history
-* communication management
-* customer intelligence
+The real challenge is building a marketplace that can operate intelligently.
 
 ---
 
-## Provider Management
+## The Vision
 
-Responsible for managing provider operations and performance.
-
-Features:
-
-* provider onboarding
-* service categories
-* availability management
-* performance tracking
-* reputation monitoring
-
----
-
-## Marketplace Operations
-
-Responsible for marketplace execution.
-
-Features:
-
-* service catalog
-* booking management
-* marketplace monitoring
-* transaction visibility
-* operational analytics
-
----
-
-## Workflow Automation
-
-Responsible for reducing manual operational work.
-
-Features:
-
-* booking automation
-* notifications
-* workflow orchestration
-* reminders
-* operational synchronization
-
----
-
-## AI Matching Engine
-
-Responsible for intelligent service recommendations.
-
-Features:
-
-* provider matching
-* recommendation generation
-* service optimization
-* marketplace intelligence
-* matching explanations
-
----
-
-# Technology Ecosystem
-
-## Development
-
-* JavaScript
-* TypeScript
-* Python
-* PHP
-
-## Data Platform
-
-* PostgreSQL
-* MySQL
-* Supabase
-* Firebase
-
-## Artificial Intelligence
-
-* OpenAI API
-* Claude AI
-* AI Agents
-
-## Automation
-
-* n8n
-* Make
-* REST APIs
-* Webhooks
-
-## Analytics
-
-* Power BI
-* Tableau
-
-## Infrastructure
-
-* Docker
-* AWS
-* Azure
-* Google Cloud
-
----
-
-# System Architecture
+AutoConnect is designed as a Marketplace Operating System.
 
 ```text
-Customers
-      ↓
+Customer Request
+        ↓
 Marketplace Platform
-      ↓
+        ↓
 Provider Network
-      ↓
-Workflow Automation Layer
-      ↓
-AI Matching Engine
-      ↓
-Marketplace Intelligence Layer
-      ↓
+        ↓
+Workflow Automation
+        ↓
+Matching Engine
+        ↓
+Marketplace Intelligence
+        ↓
 Business Decisions
-```
+Prototype Components
+Backend API
 
----
+FastAPI prototype backend providing:
 
-# Repository Structure
+customer endpoints
+provider endpoints
+booking endpoints
+marketplace summary endpoint
+health check endpoint
 
-| Module       | Description                             |
-| ------------ | --------------------------------------- |
-| docs         | Product vision and marketplace overview |
-| architecture | Enterprise marketplace architecture     |
-| database     | Database design and entity structure    |
-| workflows    | Marketplace workflow automation         |
-| roadmap      | Product roadmap and growth strategy     |
-| ui           | Marketplace interface concepts          |
-| diagrams     | Marketplace system flows                |
-| demo         | Product demonstration scenarios         |
-| src          | Planned implementation architecture     |
+Current endpoints:
 
----
+GET /
+GET /health
+GET /customers
+GET /providers
+GET /bookings
+GET /marketplace/summary
+Database Layer
 
-# Current Documentation
+Marketplace database schema covering:
 
-## Product Documentation
+customers
+providers
+services
+bookings
+reviews
+matching recommendations
 
-* Project Overview
-* Marketplace Vision
-* Strategic Objectives
-* Target Users
+Included:
 
-## Technical Documentation
+SQL Schema
+Entity Relationship Diagram
+API Specification
 
-* System Architecture
-* Database Design
-* Workflow Design
-* Product Roadmap
+OpenAPI specification documenting:
 
-## Product Planning
+customers
+providers
+bookings
+marketplace analytics
+Workflow Automation
 
-* UI Concepts
-* Marketplace Flows
-* Demo Scenarios
-* Source Code Architecture
+Sample n8n workflow demonstrating booking automation.
 
----
+Workflow steps:
 
-# Platform Objectives
+New Booking Trigger
+        ↓
+Fetch Providers
+        ↓
+Marketplace Summary
+        ↓
+Notify Provider
+Marketplace Use Cases
 
-## Marketplace Efficiency
+Documented scenarios include:
 
-Improve service delivery through automation and intelligent workflows.
+Customer Service Request
+Provider Matching
+Booking Workflow
+Marketplace Analytics
+Intelligent Marketplace Optimization
+Technology Ecosystem
+Programming
+Python
+JavaScript
+TypeScript
+PHP
+Databases
+PostgreSQL
+MySQL
+Supabase
+Firebase
+Artificial Intelligence
+OpenAI API
+Claude AI
+AI Agents
+Automation
+n8n
+Make
+REST APIs
+Webhooks
+Analytics
+Power BI
+Tableau
+Infrastructure
+Docker
+AWS
+Azure
+Google Cloud
+Repository Structure
+Module	Description
+backend	FastAPI marketplace backend prototype
+api	OpenAPI specification
+database	SQL schema, ERD and data model
+workflows	Workflow documentation and booking workflow export
+docs	Product overview and marketplace use cases
+architecture	System architecture and Mermaid diagrams
+roadmap	Product roadmap
+ui	Marketplace interface concepts
+diagrams	System flow documentation
+demo	Product demonstration scenarios
+src	Planned implementation architecture
+Current Capabilities
+Customer Management
 
-## Better Matching
+Store and expose customer data through API endpoints.
 
-Connect customers with the most suitable providers.
+Provider Network
 
-## Operational Visibility
+Represent service providers, categories, ratings, and availability logic.
 
-Provide transparency across marketplace activities.
+Booking Management
 
-## Automation First
+Model customer-provider service bookings.
 
-Reduce manual coordination and repetitive marketplace operations.
+Marketplace Analytics
 
-## Scalability
+Provide marketplace summary data.
 
-Support marketplace growth without increasing operational complexity.
+Workflow Automation
 
----
+Prototype booking workflow through automation export.
 
-# Future Platform Expansion
+Matching Intelligence
 
-## Dynamic Pricing Engine
+Prepare the foundation for provider recommendation and matching logic.
 
-Adjust pricing using marketplace demand and operational data.
+Running the Prototype
+Install Dependencies
+pip install -r backend/requirements.txt
+Start API
+uvicorn backend.main:app --reload
+Swagger Documentation
 
-## Reputation Intelligence
+Open:
 
-Measure provider quality through advanced reputation models.
+http://127.0.0.1:8000/docs
+Health Check
+GET /health
 
-## Fraud Detection Engine
+Expected response:
 
-Identify suspicious marketplace activity automatically.
+{
+  "status": "ok"
+}
+Future Development
 
-## Marketplace Forecasting
+Planned areas:
 
-Predict future marketplace demand and operational trends.
+authentication
+customer profiles
+provider onboarding
+booking engine
+matching algorithm
+marketplace analytics dashboard
+recommendation engine
+workflow automation
+dynamic pricing logic
+Related Projects
+Business Operations AI Platform
+AI Accounting Assistant
+Legal AI Assistant
+Medical AI Assistant
+LifeOS AI
+End Goal
 
-## Customer Intelligence
-
-Generate customer behavior insights and recommendations.
-
-## Provider Intelligence
-
-Support provider growth through performance analytics.
-
----
-
-# Related Projects
-
-This platform is part of a broader intelligent systems ecosystem:
-
-* Business Operations AI Platform
-* AI Accounting Assistant
-* Legal AI Assistant
-* Medical AI Assistant
-* LifeOS AI
-
----
-
-# Project Status
-
-Architecture, planning, documentation, and platform design are currently in progress.
-
----
-
-# End Goal
-
-Create a complete Marketplace Operating System capable of managing customers, providers, marketplace workflows, analytics, automation, and AI-powered decision support from a single intelligent platform.
+Create a marketplace operating system where customers, providers, automation, analytics, and intelligent matching work together to improve service delivery and marketplace performance.
