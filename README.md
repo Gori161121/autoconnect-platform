@@ -43,54 +43,71 @@ Matching Engine
 Marketplace Intelligence
         ↓
 Business Decisions
-Prototype Components
-Backend API
+```
+
+---
+
+## Prototype Components
+
+### Backend API
 
 FastAPI prototype backend providing:
 
-customer endpoints
-provider endpoints
-booking endpoints
-marketplace summary endpoint
-health check endpoint
+- customer endpoints
+- provider endpoints
+- booking endpoints
+- marketplace summary endpoint
+- health check endpoint
 
 Current endpoints:
 
+```text
 GET /
 GET /health
 GET /customers
 GET /providers
 GET /bookings
 GET /marketplace/summary
-Database Layer
+```
+
+---
+
+### Database Layer
 
 Marketplace database schema covering:
 
-customers
-providers
-services
-bookings
-reviews
-matching recommendations
+- customers
+- providers
+- services
+- bookings
+- reviews
+- matching recommendations
 
 Included:
 
-SQL Schema
-Entity Relationship Diagram
-API Specification
+- SQL Schema
+- Entity Relationship Diagram
+
+---
+
+### API Specification
 
 OpenAPI specification documenting:
 
-customers
-providers
-bookings
-marketplace analytics
-Workflow Automation
+- customers
+- providers
+- bookings
+- marketplace analytics
+
+---
+
+### Workflow Automation
 
 Sample n8n workflow demonstrating booking automation.
 
 Workflow steps:
 
+```text
 New Booking Trigger
         ↓
 Fetch Providers
@@ -98,118 +115,175 @@ Fetch Providers
 Marketplace Summary
         ↓
 Notify Provider
-Marketplace Use Cases
+```
+
+---
+
+### Marketplace Use Cases
 
 Documented scenarios include:
 
-Customer Service Request
-Provider Matching
-Booking Workflow
-Marketplace Analytics
-Intelligent Marketplace Optimization
-Technology Ecosystem
-Programming
-Python
-JavaScript
-TypeScript
-PHP
-Databases
-PostgreSQL
-MySQL
-Supabase
-Firebase
-Artificial Intelligence
-OpenAI API
-Claude AI
-AI Agents
-Automation
-n8n
-Make
-REST APIs
-Webhooks
-Analytics
-Power BI
-Tableau
-Infrastructure
-Docker
-AWS
-Azure
-Google Cloud
-Repository Structure
-Module	Description
-backend	FastAPI marketplace backend prototype
-api	OpenAPI specification
-database	SQL schema, ERD and data model
-workflows	Workflow documentation and booking workflow export
-docs	Product overview and marketplace use cases
-architecture	System architecture and Mermaid diagrams
-roadmap	Product roadmap
-ui	Marketplace interface concepts
-diagrams	System flow documentation
-demo	Product demonstration scenarios
-src	Planned implementation architecture
-Current Capabilities
-Customer Management
+- Customer Service Request
+- Provider Matching
+- Booking Workflow
+- Marketplace Analytics
+- Intelligent Marketplace Optimization
+
+---
+
+## Technology Ecosystem
+
+### Programming
+
+- Python
+- JavaScript
+- TypeScript
+- PHP
+
+### Databases
+
+- PostgreSQL
+- MySQL
+- Supabase
+- Firebase
+
+### Artificial Intelligence
+
+- OpenAI API
+- Claude AI
+- AI Agents
+
+### Automation
+
+- n8n
+- Make
+- REST APIs
+- Webhooks
+
+### Analytics
+
+- Power BI
+- Tableau
+
+### Infrastructure
+
+- Docker
+- AWS
+- Azure
+- Google Cloud
+
+---
+
+## Repository Structure
+
+| Module | Description |
+|---|---|
+| backend | FastAPI marketplace backend prototype |
+| api | OpenAPI specification |
+| database | SQL schema, ERD and data model |
+| workflows | Workflow documentation and booking workflow export |
+| docs | Product overview and marketplace use cases |
+| architecture | System architecture and Mermaid diagrams |
+| roadmap | Product roadmap |
+| ui | Marketplace interface concepts |
+| diagrams | System flow documentation |
+| demo | Product demonstration scenarios |
+| src | Planned implementation architecture |
+
+---
+
+## Current Capabilities
+
+### Customer Management
 
 Store and expose customer data through API endpoints.
 
-Provider Network
+### Provider Network
 
-Represent service providers, categories, ratings, and availability logic.
+Represent service providers, categories, ratings, and marketplace availability logic.
 
-Booking Management
+### Booking Management
 
 Model customer-provider service bookings.
 
-Marketplace Analytics
+### Marketplace Analytics
 
-Provide marketplace summary data.
+Provide marketplace summary data for platform visibility.
 
-Workflow Automation
+### Workflow Automation
 
 Prototype booking workflow through automation export.
 
-Matching Intelligence
+### Matching Intelligence
 
 Prepare the foundation for provider recommendation and matching logic.
 
-Running the Prototype
-Install Dependencies
+---
+
+## Running the Prototype
+
+### Install Dependencies
+
+```bash
 pip install -r backend/requirements.txt
-Start API
+```
+
+### Start API
+
+```bash
 uvicorn backend.main:app --reload
-Swagger Documentation
+```
+
+### Swagger Documentation
 
 Open:
 
+```text
 http://127.0.0.1:8000/docs
-Health Check
+```
+
+### Health Check
+
+```text
 GET /health
+```
 
 Expected response:
 
+```json
 {
   "status": "ok"
 }
-Future Development
+```
+
+---
+
+## Future Development
 
 Planned areas:
 
-authentication
-customer profiles
-provider onboarding
-booking engine
-matching algorithm
-marketplace analytics dashboard
-recommendation engine
-workflow automation
-dynamic pricing logic
-Related Projects
-Business Operations AI Platform
-AI Accounting Assistant
-Legal AI Assistant
-Medical AI Assistant
-LifeOS AI
-End Goal
+- authentication
+- customer profiles
+- provider onboarding
+- booking engine
+- matching algorithm
+- marketplace analytics dashboard
+- recommendation engine
+- workflow automation
+- dynamic pricing logic
+
+---
+
+## Related Projects
+
+- Business Operations AI Platform
+- AI Accounting Assistant
+- Legal AI Assistant
+- Medical AI Assistant
+- LifeOS AI
+
+---
+
+## End Goal
 
 Create a marketplace operating system where customers, providers, automation, analytics, and intelligent matching work together to improve service delivery and marketplace performance.
