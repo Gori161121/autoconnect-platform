@@ -1,0 +1,17 @@
+flowchart LR
+
+Customer --> Marketplace
+Marketplace --> ProviderNetwork
+Marketplace --> BookingEngine
+
+BookingEngine --> AutomationLayer
+AutomationLayer --> MatchingEngine
+
+MatchingEngine --> AnalyticsLayer
+AnalyticsLayer --> BusinessIntelligence
+
+Marketplace --> PostgreSQL
+Marketplace --> Supabase
+AutomationLayer --> n8n
+AutomationLayer --> Make
+MatchingEngine --> OpenAI
