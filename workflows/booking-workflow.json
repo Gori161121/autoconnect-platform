@@ -1,0 +1,53 @@
+{
+  "name": "AutoConnect Booking Workflow",
+  "active": false,
+  "nodes": [
+    {
+      "id": "1",
+      "name": "New Booking Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [200, 300]
+    },
+    {
+      "id": "2",
+      "name": "Fetch Providers",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [450, 300],
+      "parameters": {
+        "url": "http://localhost:8000/providers",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Marketplace Summary",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [700, 300],
+      "parameters": {
+        "url": "http://localhost:8000/marketplace/summary",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Notify Provider",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [950, 300],
+      "parameters": {
+        "url": "http://localhost:8000/bookings",
+        "method": "GET"
+      }
+    }
+  ],
+  "connections": {
+    "New Booking Trigger": {
+      "main": [[{ "node": "Fetch Providers", "type": "main" }]]
+    },
+    "Fetch Providers": {
+      "main": [[{ "node": "Marketplace Summary", "type": "main" }]]
+    },
+    "Marketplace Summary": {
+      "main": [[{ "node": "Notify Provider", "type": "main" }]]
+    }
+  }
+}
