@@ -9,6 +9,18 @@ servers:
   - url: https://api.autoconnect.local
 
 paths:
+   /vehicles/{id}/intelligence-report:
+    get:
+      summary: Vehicle Intelligence Report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vehicle intelligence report returned
   /vehicles/{id}/insurance-risk:
     get:
       summary: Insurance Risk Intelligence
