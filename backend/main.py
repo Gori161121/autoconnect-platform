@@ -10,6 +10,7 @@ from backend.services.maintenance_prediction_service import build_maintenance_pr
 from backend.services.service_recommendation_engine import recommend_service_provider
 from backend.services.ownership_cost_analytics import build_cost_summary
 from backend.services.ev_battery_service import build_ev_battery_summary
+from backend.services.driver_behavior_service import build_driver_behavior_summary
 app = FastAPI(
     title="AutoConnect Platform API",
     description="Marketplace platform connecting customers and service providers.",
@@ -181,4 +182,11 @@ def ev_battery_summary(vehicle_id: int):
         charging_cycles=740,
         battery_temperature=34,
         estimated_range_km=310
+    )
+@app.get("/vehicles/{vehicle_id}/driver-behavior")
+def driver_behavior(vehicle_id: int):
+    return build_driver_behavior_summary(
+        hard_brakes=2,
+        rapid_accelerations=3,
+        overspeed_events=1
     )
