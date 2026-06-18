@@ -9,6 +9,18 @@ servers:
   - url: https://api.autoconnect.local
 
 paths:
+  /vehicles/{id}/hybrid-efficiency:
+    get:
+      summary: Hybrid Vehicle Efficiency
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Hybrid vehicle efficiency returned
   /vehicles/{id}/driver-behavior:
     get:
       summary: Driver Behavior Analytics
