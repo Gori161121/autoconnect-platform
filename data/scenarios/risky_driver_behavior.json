@@ -1,0 +1,15 @@
+{
+  "scenario_id": "scenario_004",
+  "title": "Risky Driver Behavior",
+  "vehicle_type": "ANY",
+  "signals": {
+    "hard_brakes": 6,
+    "rapid_accelerations": 8,
+    "overspeed_events": 5
+  },
+  "expected_output": {
+    "driver_behavior": "RISKY",
+    "insurance_risk": "HIGH_RISK",
+    "recommended_action": "Review driving behavior and insurance risk profile"
+  }
+}
