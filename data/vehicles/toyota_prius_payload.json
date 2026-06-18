@@ -1,0 +1,15 @@
+{
+  "vehicle_id": "veh_hybrid_001",
+  "vin": "JTDKN3DU5F0123456",
+  "make": "Toyota",
+  "model": "Prius",
+  "year": 2018,
+  "mileage": 142000,
+  "vehicle_type": "HYBRID",
+  "telemetry": {
+    "fuel_consumption_l_100km": 4.7,
+    "electric_range_km": 38,
+    "battery_usage_percent": 74,
+    "engine_temperature": 91
+  }
+}
