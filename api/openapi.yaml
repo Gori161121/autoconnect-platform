@@ -9,6 +9,18 @@ servers:
   - url: https://api.autoconnect.local
 
 paths:
+  /vehicles/{id}/valuation:
+    get:
+      summary: Vehicle Valuation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vehicle valuation returned
   /vehicles/{id}/hybrid-efficiency:
     get:
       summary: Hybrid Vehicle Efficiency
