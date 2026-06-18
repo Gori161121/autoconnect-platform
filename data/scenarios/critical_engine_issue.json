@@ -1,0 +1,21 @@
+{
+  "scenario_id": "scenario_001",
+  "title": "Critical Engine Issue",
+  "vehicle_type": "ICE",
+  "vehicle": {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2019,
+    "mileage": 128450
+  },
+  "signals": {
+    "check_engine": true,
+    "engine_temperature": 108,
+    "battery_voltage": 11.7,
+    "fault_codes": ["P0300", "P0420"]
+  },
+  "expected_output": {
+    "diagnostic_status": "CRITICAL_ATTENTION_REQUIRED",
+    "recommended_action": "Schedule engine diagnostic service immediately"
+  }
+}
