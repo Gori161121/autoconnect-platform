@@ -16,6 +16,58 @@ paths:
       responses:
         '200':
           description: Service is running
+            /vehicles:
+    get:
+      summary: Get Vehicles
+      responses:
+        '200':
+          description: Vehicle list returned
+
+  /vehicles/{id}/health:
+    get:
+      summary: Vehicle Health Score
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vehicle health score returned
+
+  /vehicles/{id}/diagnostics:
+    get:
+      summary: Vehicle Diagnostics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Diagnostic information returned
+
+  /vehicles/{id}/maintenance-prediction:
+    get:
+      summary: Maintenance Prediction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Maintenance prediction returned
+
+  /ownership/cost-summary:
+    get:
+      summary: Ownership Cost Summary
+      responses:
+        '200':
+          description: Ownership cost summary returned
 
   /customers:
     get:
