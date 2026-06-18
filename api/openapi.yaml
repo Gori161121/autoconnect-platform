@@ -9,7 +9,18 @@ servers:
   - url: https://api.autoconnect.local
 
 paths:
-
+  /vehicles/{id}/ev-battery:
+    get:
+      summary: EV Battery Intelligence
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: EV battery intelligence returned
   /health:
     get:
       summary: Health Check
