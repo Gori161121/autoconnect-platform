@@ -1,0 +1,20 @@
+{
+  "scenario_id": "scenario_003",
+  "title": "Hybrid Efficiency Drop",
+  "vehicle_type": "HYBRID",
+  "vehicle": {
+    "make": "Toyota",
+    "model": "Prius",
+    "year": 2018,
+    "mileage": 142000
+  },
+  "signals": {
+    "fuel_consumption_l_100km": 7.4,
+    "electric_range_km": 24,
+    "battery_usage_percent": 28
+  },
+  "expected_output": {
+    "hybrid_efficiency": "INEFFICIENT",
+    "recommended_action": "Inspect hybrid battery performance and driving efficiency"
+  }
+}
