@@ -1,0 +1,16 @@
+{
+  "vehicle_id": "veh_ev_001",
+  "vin": "5YJ3E1EA7KF317000",
+  "make": "Tesla",
+  "model": "Model 3",
+  "year": 2021,
+  "mileage": 84500,
+  "vehicle_type": "EV",
+  "telemetry": {
+    "battery_health": 91,
+    "state_of_charge": 68,
+    "estimated_range_km": 312,
+    "battery_temperature": 32,
+    "charging_cycles": 620
+  }
+}
