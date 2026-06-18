@@ -15,6 +15,9 @@ from backend.services.hybrid_efficiency_service import build_hybrid_efficiency_s
 from backend.services.vehicle_valuation_service import (
     build_vehicle_valuation_summary
 )
+from backend.services.insurance_risk_service import (
+    build_insurance_risk_summary
+)
 
 app = FastAPI(
     title="AutoConnect Platform API",
@@ -210,4 +213,12 @@ def vehicle_valuation(vehicle_id: int):
         age_years=5,
         mileage=120000,
         health_score=85
+    )
+@app.get("/vehicles/{vehicle_id}/insurance-risk")
+def insurance_risk(vehicle_id: int):
+
+    return build_insurance_risk_summary(
+        driver_score=85,
+        active_fault_codes=1,
+        accident_count=1
     )
