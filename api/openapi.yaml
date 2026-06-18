@@ -9,6 +9,18 @@ servers:
   - url: https://api.autoconnect.local
 
 paths:
+  /vehicles/{id}/driver-behavior:
+    get:
+      summary: Driver Behavior Analytics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Driver behavior analytics returned
   /vehicles/{id}/ev-battery:
     get:
       summary: EV Battery Intelligence
