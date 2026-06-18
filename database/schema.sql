@@ -127,3 +127,66 @@ CREATE INDEX idx_vehicles_owner ON vehicles(owner_id);
 CREATE INDEX idx_diagnostics_vehicle ON diagnostic_events(vehicle_id);
 CREATE INDEX idx_maintenance_vehicle ON maintenance_records(vehicle_id);
 CREATE INDEX idx_ownership_vehicle ON ownership_costs(vehicle_id);
+-- ==========================================
+-- Advanced Vehicle Intelligence Tables
+-- ==========================================
+
+CREATE TABLE ev_battery_snapshots (
+    id SERIAL PRIMARY KEY,
+    vehicle_id INTEGER REFERENCES vehicles(id),
+    battery_health INTEGER,
+    charging_cycles INTEGER,
+    battery_temperature INTEGER,
+    estimated_range_km INTEGER,
+    risk_level VARCHAR(30),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE driver_behavior_events (
+    id SERIAL PRIMARY KEY,
+    vehicle_id INTEGER REFERENCES vehicles(id),
+    hard_brakes INTEGER DEFAULT 0,
+    rapid_accelerations INTEGER DEFAULT 0,
+    overspeed_events INTEGER DEFAULT 0,
+    driver_score INTEGER,
+    behavior_classification VARCHAR(30),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE hybrid_efficiency_snapshots (
+    id SERIAL PRIMARY KEY,
+    vehicle_id INTEGER REFERENCES vehicles(id),
+    fuel_consumption_l_100km DECIMAL(5,2),
+    electric_range_km INTEGER,
+    battery_usage_percent INTEGER,
+    efficiency_score INTEGER,
+    classification VARCHAR(30),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE vehicle_valuations (
+    id SERIAL PRIMARY KEY,
+    vehicle_id INTEGER REFERENCES vehicles(id),
+    original_price DECIMAL(12,2),
+    estimated_value DECIMAL(12,2),
+    classification VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE insurance_risk_profiles (
+    id SERIAL PRIMARY KEY,
+    vehicle_id INTEGER REFERENCES vehicles(id),
+    driver_score INTEGER,
+    active_fault_codes INTEGER,
+    accident_count INTEGER,
+    insurance_risk_score INTEGER,
+    classification VARCHAR(30),
+    premium_multiplier DECIMAL(4,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_ev_battery_vehicle ON ev_battery_snapshots(vehicle_id);
+CREATE INDEX idx_driver_behavior_vehicle ON driver_behavior_events(vehicle_id);
+CREATE INDEX idx_hybrid_vehicle ON hybrid_efficiency_snapshots(vehicle_id);
+CREATE INDEX idx_valuation_vehicle ON vehicle_valuations(vehicle_id);
+CREATE INDEX idx_insurance_vehicle ON insurance_risk_profiles(vehicle_id);
