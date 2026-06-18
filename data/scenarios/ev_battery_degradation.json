@@ -1,0 +1,21 @@
+{
+  "scenario_id": "scenario_002",
+  "title": "EV Battery Degradation",
+  "vehicle_type": "EV",
+  "vehicle": {
+    "make": "Tesla",
+    "model": "Model 3",
+    "year": 2021,
+    "mileage": 84500
+  },
+  "signals": {
+    "battery_health": 78,
+    "charging_cycles": 1250,
+    "battery_temperature": 39,
+    "estimated_range_km": 260
+  },
+  "expected_output": {
+    "battery_risk_level": "MEDIUM",
+    "recommended_action": "Monitor battery degradation and charging behavior"
+  }
+}
