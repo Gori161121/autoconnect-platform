@@ -1,0 +1,29 @@
+{
+  "vehicle_id": "veh_001",
+  "vin": "WAUZZZ8V5KA123456",
+  "make": "Audi",
+  "model": "A3",
+  "year": 2019,
+  "mileage": 128450,
+  "telemetry": {
+    "rpm": 1850,
+    "engine_temperature": 92,
+    "battery_voltage": 12.4,
+    "fuel_level_percentage": 64,
+    "check_engine": true
+  },
+  "diagnostics": {
+    "active_fault_codes": [
+      {
+        "code": "P0420",
+        "severity": "medium",
+        "description": "Catalyst system efficiency below threshold"
+      }
+    ]
+  },
+  "maintenance": {
+    "oil_change_due_km": 1500,
+    "inspection_due_days": 32,
+    "tire_rotation_due_km": 3000
+  }
+}
