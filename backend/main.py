@@ -9,7 +9,7 @@ from backend.services.diagnostics_service import (
 from backend.services.maintenance_prediction_service import build_maintenance_prediction
 from backend.services.service_recommendation_engine import recommend_service_provider
 from backend.services.ownership_cost_analytics import build_cost_summary
-
+from backend.services.ev_battery_service import build_ev_battery_summary
 app = FastAPI(
     title="AutoConnect Platform API",
     description="Marketplace platform connecting customers and service providers.",
@@ -173,4 +173,12 @@ def ownership_cost_summary():
         parking_cost=300,
         fines_cost=80,
         months=12
+    )
+@app.get("/vehicles/{vehicle_id}/ev-battery")
+def ev_battery_summary(vehicle_id: int):
+    return build_ev_battery_summary(
+        battery_health=88,
+        charging_cycles=740,
+        battery_temperature=34,
+        estimated_range_km=310
     )
