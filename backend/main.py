@@ -11,6 +11,8 @@ from backend.services.service_recommendation_engine import recommend_service_pro
 from backend.services.ownership_cost_analytics import build_cost_summary
 from backend.services.ev_battery_service import build_ev_battery_summary
 from backend.services.driver_behavior_service import build_driver_behavior_summary
+from backend.services.hybrid_efficiency_service import build_hybrid_efficiency_summary
+
 app = FastAPI(
     title="AutoConnect Platform API",
     description="Marketplace platform connecting customers and service providers.",
@@ -189,4 +191,11 @@ def driver_behavior(vehicle_id: int):
         hard_brakes=2,
         rapid_accelerations=3,
         overspeed_events=1
+    )
+@app.get("/vehicles/{vehicle_id}/hybrid-efficiency")
+def hybrid_efficiency(vehicle_id: int):
+    return build_hybrid_efficiency_summary(
+        fuel_consumption_l_100km=5.6,
+        electric_range_km=42,
+        battery_usage_percent=68
     )
