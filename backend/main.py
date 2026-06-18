@@ -18,6 +18,10 @@ from backend.services.vehicle_valuation_service import (
 from backend.services.insurance_risk_service import (
     build_insurance_risk_summary
 )
+from backend.services.vehicle_intelligence_engine import (
+    build_vehicle_intelligence_report
+)
+
 
 app = FastAPI(
     title="AutoConnect Platform API",
@@ -222,3 +226,6 @@ def insurance_risk(vehicle_id: int):
         active_fault_codes=1,
         accident_count=1
     )
+@app.get("/vehicles/{vehicle_id}/intelligence-report")
+def vehicle_intelligence_report(vehicle_id: int):
+    return build_vehicle_intelligence_report()
