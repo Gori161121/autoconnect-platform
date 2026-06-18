@@ -1,0 +1,16 @@
+{
+  "vehicle_id": "veh_ice_001",
+  "vin": "WAUZZZ8V5KA123456",
+  "make": "Audi",
+  "model": "A3",
+  "year": 2019,
+  "mileage": 128450,
+  "vehicle_type": "ICE",
+  "telemetry": {
+    "rpm": 1850,
+    "engine_temperature": 92,
+    "battery_voltage": 12.4,
+    "check_engine": true,
+    "fault_codes": ["P0420"]
+  }
+}
