@@ -1,0 +1,37 @@
+[
+  {
+    "code": "P0300",
+    "description": "Random/Multiple Cylinder Misfire Detected",
+    "system": "Engine",
+    "severity": "HIGH",
+    "recommended_action": "Inspect ignition system and engine components"
+  },
+  {
+    "code": "P0420",
+    "description": "Catalyst System Efficiency Below Threshold",
+    "system": "Emissions",
+    "severity": "MEDIUM",
+    "recommended_action": "Inspect catalytic converter"
+  },
+  {
+    "code": "P0562",
+    "description": "System Voltage Low",
+    "system": "Electrical",
+    "severity": "HIGH",
+    "recommended_action": "Inspect battery and charging system"
+  },
+  {
+    "code": "P0171",
+    "description": "System Too Lean",
+    "system": "Fuel",
+    "severity": "MEDIUM",
+    "recommended_action": "Inspect fuel delivery system"
+  },
+  {
+    "code": "P0113",
+    "description": "Intake Air Temperature Sensor High Input",
+    "system": "Sensors",
+    "severity": "LOW",
+    "recommended_action": "Inspect intake air temperature sensor"
+  }
+]
