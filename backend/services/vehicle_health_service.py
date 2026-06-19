@@ -4,8 +4,36 @@ Vehicle Health Service
 Responsible for:
 - Vehicle health scoring
 - Risk assessment
-- Maintenance status evaluation
+- Diagnostic score calculation
+- Maintenance score calculation
+- Mileage score calculation
 """
+
+
+def calculate_diagnostic_score(active_fault_codes: int) -> int:
+    score = 100 - min(active_fault_codes * 15, 60)
+    return max(score, 0)
+
+
+def calculate_maintenance_score(overdue_services: int) -> int:
+    score = 100 - min(overdue_services * 20, 60)
+    return max(score, 0)
+
+
+def calculate_mileage_score(mileage: int) -> int:
+    if mileage > 250000:
+        return 50
+
+    if mileage > 180000:
+        return 65
+
+    if mileage > 120000:
+        return 75
+
+    if mileage > 80000:
+        return 85
+
+    return 100
 
 
 def calculate_vehicle_health_score(
@@ -13,27 +41,20 @@ def calculate_vehicle_health_score(
     active_fault_codes: int,
     overdue_services: int
 ) -> int:
+    diagnostic_score = calculate_diagnostic_score(active_fault_codes)
+    maintenance_score = calculate_maintenance_score(overdue_services)
+    mileage_score = calculate_mileage_score(mileage)
 
-    score = 100
+    final_score = (
+        diagnostic_score * 0.4
+        + maintenance_score * 0.35
+        + mileage_score * 0.25
+    )
 
-    score -= min(active_fault_codes * 10, 40)
-
-    score -= min(overdue_services * 15, 30)
-
-    if mileage > 200000:
-        score -= 15
-    elif mileage > 120000:
-        score -= 10
-    elif mileage > 80000:
-        score -= 5
-
-    return max(score, 0)
+    return round(final_score)
 
 
-def determine_vehicle_risk_level(
-    health_score: int
-) -> str:
-
+def determine_vehicle_risk_level(health_score: int) -> str:
     if health_score >= 85:
         return "LOW"
 
@@ -48,14 +69,22 @@ def generate_health_summary(
     active_fault_codes: int,
     overdue_services: int
 ):
+    diagnostic_score = calculate_diagnostic_score(active_fault_codes)
+    maintenance_score = calculate_maintenance_score(overdue_services)
+    mileage_score = calculate_mileage_score(mileage)
 
-    score = calculate_vehicle_health_score(
+    health_score = calculate_vehicle_health_score(
         mileage,
         active_fault_codes,
         overdue_services
     )
 
     return {
-        "health_score": score,
-        "risk_level": determine_vehicle_risk_level(score)
+        "health_score": health_score,
+        "risk_level": determine_vehicle_risk_level(health_score),
+        "score_breakdown": {
+            "diagnostic_score": diagnostic_score,
+            "maintenance_score": maintenance_score,
+            "mileage_score": mileage_score
+        }
     }
