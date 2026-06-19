@@ -4,26 +4,47 @@ from backend.services.diagnostics_service import (
 )
 
 
-def test_interpret_known_fault_code():
-    result = interpret_fault_code("P0420")
+def test_known_fault_code():
 
-    assert result["system"] == "Emissions"
-    assert result["severity"] == "MEDIUM"
+    result = interpret_fault_code(
+        "P0300"
+    )
 
-
-def test_interpret_unknown_fault_code():
-    result = interpret_fault_code("X9999")
-
-    assert result["system"] == "Unknown"
+    assert result["system"] == "Engine"
+    assert result["severity"] == "HIGH"
 
 
-def test_diagnostic_status_high():
-    result = classify_vehicle_diagnostic_status(["P0300"])
+def test_unknown_fault_code():
+
+    result = interpret_fault_code(
+        "P9999"
+    )
+
+    assert result["severity"] == "UNKNOWN"
+
+
+def test_healthy_vehicle():
+
+    result = classify_vehicle_diagnostic_status(
+        []
+    )
+
+    assert result == "HEALTHY"
+
+
+def test_critical_vehicle():
+
+    result = classify_vehicle_diagnostic_status(
+        ["P0300"]
+    )
 
     assert result == "CRITICAL_ATTENTION_REQUIRED"
 
 
-def test_diagnostic_status_healthy():
-    result = classify_vehicle_diagnostic_status([])
+def test_service_recommended():
 
-    assert result == "HEALTHY"
+    result = classify_vehicle_diagnostic_status(
+        ["P0420"]
+    )
+
+    assert result == "SERVICE_RECOMMENDED"
