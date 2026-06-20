@@ -1,0 +1,6 @@
+{
+  "scenario_id": "scenario_004",
+  "driver_behavior": "RISKY",
+  "insurance_risk": "HIGH_RISK",
+  "recommended_action": "Review driving behavior and insurance risk profile"
+}
