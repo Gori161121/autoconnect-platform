@@ -1,17 +1,31 @@
 openapi: 3.0.3
 
 info:
-  title: AutoConnect Platform API
-  description: API specification for customers, providers, bookings, marketplace analytics and matching.
-  version: 1.0.0
+  title: AutoConnect Vehicle Intelligence API
+  description: API specification for connected vehicle intelligence, diagnostics, maintenance prediction, ownership analytics and legacy service fulfillment.
+  version: 0.2.0
 
 servers:
   - url: https://api.autoconnect.local
 
 paths:
-   /vehicles/{id}/intelligence-report:
+  /health:
     get:
-      summary: Vehicle Intelligence Report
+      summary: Health Check
+      responses:
+        "200":
+          description: Service is running
+
+  /vehicles:
+    get:
+      summary: Get Vehicles
+      responses:
+        "200":
+          description: Vehicle list returned
+
+  /vehicles/{id}/health:
+    get:
+      summary: Vehicle Health Score
       parameters:
         - name: id
           in: path
@@ -19,8 +33,74 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
-          description: Vehicle intelligence report returned
+        "200":
+          description: Vehicle health score returned
+
+  /vehicles/{id}/diagnostics:
+    get:
+      summary: Vehicle Diagnostics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Diagnostic information returned
+
+  /vehicles/{id}/maintenance-prediction:
+    get:
+      summary: Maintenance Prediction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Maintenance prediction returned
+
+  /vehicles/{id}/ev-battery:
+    get:
+      summary: EV Battery Intelligence
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: EV battery intelligence returned
+
+  /vehicles/{id}/driver-behavior:
+    get:
+      summary: Driver Behavior Analytics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Driver behavior analytics returned
+
+  /vehicles/{id}/hybrid-efficiency:
+    get:
+      summary: Hybrid Vehicle Efficiency
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Hybrid vehicle efficiency returned
+
   /vehicles/{id}/insurance-risk:
     get:
       summary: Insurance Risk Intelligence
@@ -31,10 +111,76 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: Insurance risk intelligence returned
+
   /vehicles/{id}/valuation:
     get:
+      summary: Vehicle Valuation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Vehicle valuation returned
+
+  /vehicles/{id}/intelligence-report:
+    get:
+      summary: Vehicle Intelligence Report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Vehicle intelligence report returned
+
+  /services/recommendations:
+    get:
+      summary: Automotive Service Recommendations
+      responses:
+        "200":
+          description: Service recommendation returned
+
+  /ownership/cost-summary:
+    get:
+      summary: Ownership Cost Summary
+      responses:
+        "200":
+          description: Ownership cost summary returned
+
+  /legacy/customers:
+    get:
+      summary: Legacy Customers
+      responses:
+        "200":
+          description: Legacy customer list returned
+
+  /legacy/providers:
+    get:
+      summary: Legacy Providers
+      responses:
+        "200":
+          description: Legacy provider list returned
+
+  /legacy/bookings:
+    get:
+      summary: Legacy Bookings
+      responses:
+        "200":
+          description: Legacy booking list returned
+
+  /legacy/marketplace/summary:
+    get:
+      summary: Legacy Marketplace Summary
+      responses:
+        "200":
+          description: Legacy marketplace summary returned    get:
       summary: Vehicle Valuation
       parameters:
         - name: id
