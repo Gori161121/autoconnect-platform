@@ -50,12 +50,12 @@ def build_vehicle_intelligence_report(
         accident_count=0
     )
 
-   maintenance = build_maintenance_prediction(
-    oil_change_due_km=signals.get("oil_change_due_km", 1500),
-    inspection_due_days=signals.get("inspection_due_days", 30),
-    tire_rotation_due_km=signals.get("tire_rotation_due_km", 2500),
-    diagnostics_status=diagnostics_status
-)
+    maintenance = build_maintenance_prediction(
+        oil_change_due_km=signals.get("oil_change_due_km", 1500),
+        inspection_due_days=signals.get("inspection_due_days", 30),
+        tire_rotation_due_km=signals.get("tire_rotation_due_km", 2500),
+        diagnostics_status=diagnostics_status
+    )
 
     return {
         "scenario": scenario.get("title"),
