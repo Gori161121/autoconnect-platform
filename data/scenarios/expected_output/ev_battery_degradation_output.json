@@ -1,0 +1,6 @@
+{
+  "scenario_id": "scenario_002",
+  "battery_risk_level": "MEDIUM",
+  "estimated_range_km": 260,
+  "recommended_action": "Monitor battery degradation and charging behavior"
+}
