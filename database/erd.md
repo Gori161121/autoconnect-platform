@@ -3,6 +3,8 @@
 ```mermaid
 erDiagram
 
+    %% Legacy Service Fulfillment Layer
+
     customers {
         int id PK
         string full_name
@@ -57,6 +59,8 @@ erDiagram
         timestamp created_at
     }
 
+    %% Connected Vehicle Core
+
     vehicles {
         int id PK
         int owner_id FK
@@ -65,6 +69,7 @@ erDiagram
         string model
         int year
         int mileage
+        string vehicle_type
         string status
         timestamp created_at
     }
@@ -112,10 +117,15 @@ erDiagram
         int vehicle_id FK
         int health_score
         string risk_level
+        int diagnostic_score
+        int maintenance_score
+        int mileage_score
         int active_fault_codes
         int overdue_services
         timestamp created_at
     }
+
+    %% Advanced Vehicle Intelligence
 
     ev_battery_snapshots {
         int id PK
@@ -190,4 +200,3 @@ erDiagram
     vehicles ||--o{ hybrid_efficiency_snapshots : generates
     vehicles ||--o{ vehicle_valuations : generates
     vehicles ||--o{ insurance_risk_profiles : generates
-```
