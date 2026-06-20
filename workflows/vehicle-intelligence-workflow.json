@@ -1,0 +1,42 @@
+{
+  "workflow_name": "Vehicle Intelligence Pipeline",
+  "version": "1.0",
+  "stages": [
+    {
+      "name": "Vehicle Registration",
+      "description": "Register vehicle and owner information"
+    },
+    {
+      "name": "Telemetry Collection",
+      "description": "Collect telemetry from OBD-II and IoT devices"
+    },
+    {
+      "name": "Diagnostics Processing",
+      "description": "Interpret DTC codes and classify severity"
+    },
+    {
+      "name": "Vehicle Health Evaluation",
+      "description": "Calculate vehicle health score and risk level"
+    },
+    {
+      "name": "Driver Behavior Analysis",
+      "description": "Analyze driving behavior events"
+    },
+    {
+      "name": "Insurance Risk Assessment",
+      "description": "Calculate insurance risk profile"
+    },
+    {
+      "name": "Maintenance Prediction",
+      "description": "Predict maintenance urgency and recommendations"
+    },
+    {
+      "name": "Ownership Cost Analysis",
+      "description": "Calculate ownership cost metrics"
+    },
+    {
+      "name": "Vehicle Intelligence Report",
+      "description": "Aggregate all intelligence modules"
+    }
+  ]
+}
