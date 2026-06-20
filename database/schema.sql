@@ -1,5 +1,9 @@
 -- AutoConnect Platform
--- Marketplace Database Schema v1
+-- Connected Vehicle Intelligence Database Schema v2
+
+-- ==========================================
+-- Legacy Service Fulfillment Layer
+-- ==========================================
 
 CREATE TABLE customers (
     id SERIAL PRIMARY KEY,
@@ -55,12 +59,8 @@ CREATE TABLE matching_recommendations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_bookings_customer ON bookings(customer_id);
-CREATE INDEX idx_bookings_provider ON bookings(provider_id);
-CREATE INDEX idx_services_provider ON services(provider_id);
-CREATE INDEX idx_recommendations_customer ON matching_recommendations(customer_id);
 -- ==========================================
--- Connected Vehicle Intelligence Tables
+-- Connected Vehicle Core
 -- ==========================================
 
 CREATE TABLE vehicles (
@@ -71,6 +71,7 @@ CREATE TABLE vehicles (
     model VARCHAR(80),
     year INTEGER,
     mileage INTEGER,
+    vehicle_type VARCHAR(30),
     status VARCHAR(30) DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -118,17 +119,16 @@ CREATE TABLE vehicle_health_snapshots (
     vehicle_id INTEGER REFERENCES vehicles(id),
     health_score INTEGER,
     risk_level VARCHAR(30),
+    diagnostic_score INTEGER,
+    maintenance_score INTEGER,
+    mileage_score INTEGER,
     active_fault_codes INTEGER,
     overdue_services INTEGER,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_vehicles_owner ON vehicles(owner_id);
-CREATE INDEX idx_diagnostics_vehicle ON diagnostic_events(vehicle_id);
-CREATE INDEX idx_maintenance_vehicle ON maintenance_records(vehicle_id);
-CREATE INDEX idx_ownership_vehicle ON ownership_costs(vehicle_id);
 -- ==========================================
--- Advanced Vehicle Intelligence Tables
+-- Advanced Vehicle Intelligence
 -- ==========================================
 
 CREATE TABLE ev_battery_snapshots (
@@ -184,6 +184,21 @@ CREATE TABLE insurance_risk_profiles (
     premium_multiplier DECIMAL(4,2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ==========================================
+-- Indexes
+-- ==========================================
+
+CREATE INDEX idx_bookings_customer ON bookings(customer_id);
+CREATE INDEX idx_bookings_provider ON bookings(provider_id);
+CREATE INDEX idx_services_provider ON services(provider_id);
+CREATE INDEX idx_recommendations_customer ON matching_recommendations(customer_id);
+
+CREATE INDEX idx_vehicles_owner ON vehicles(owner_id);
+CREATE INDEX idx_diagnostics_vehicle ON diagnostic_events(vehicle_id);
+CREATE INDEX idx_maintenance_vehicle ON maintenance_records(vehicle_id);
+CREATE INDEX idx_ownership_vehicle ON ownership_costs(vehicle_id);
+CREATE INDEX idx_health_vehicle ON vehicle_health_snapshots(vehicle_id);
 
 CREATE INDEX idx_ev_battery_vehicle ON ev_battery_snapshots(vehicle_id);
 CREATE INDEX idx_driver_behavior_vehicle ON driver_behavior_events(vehicle_id);
