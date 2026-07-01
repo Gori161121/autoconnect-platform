@@ -1,18 +1,18 @@
 import Foundation
 
+/// Repository layer that isolates networking from the UI (SwiftUI views).
 struct VehicleRepository {
-
     let apiClient: AutoConnectApiClient
 
-    func fetchVehicleHealth(vehicleId: Int) -> String {
-        return apiClient.vehicleHealthEndpoint(vehicleId: vehicleId)
+    init(apiClient: AutoConnectApiClient) {
+        self.apiClient = apiClient
     }
 
-    func fetchVehicleDiagnostics(vehicleId: Int) -> String {
-        return apiClient.diagnosticsEndpoint(vehicleId: vehicleId)
+    func loadVehicles() async -> [VehicleStatusModel] {
+        (try? await apiClient.fetchVehicles()) ?? []
     }
 
-    func fetchVehicleIntelligenceReport(vehicleId: Int) -> String {
-        return apiClient.intelligenceReportEndpoint(vehicleId: vehicleId)
+    func loadDiagnostics(vehicleId: Int) async -> [VehicleDiagnosticModel] {
+        (try? await apiClient.fetchDiagnostics(vehicleId: vehicleId)) ?? []
     }
 }

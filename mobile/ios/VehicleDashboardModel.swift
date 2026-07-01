@@ -1,13 +1,16 @@
 import Foundation
 
+/// Aggregated data model backing the main dashboard screen.
 struct VehicleDashboardModel {
+    let status: VehicleStatusModel
+    let healthScore: Int
+    let riskLevel: String  // LOW | MEDIUM | HIGH
+    let diagnostics: [VehicleDiagnosticModel]
+    let driverBehavior: DriverBehaviorModel?
+    let reminders: [MaintenanceReminder]
 
-    let vehicleHealthScore: Int
-    let riskLevel: String
-
-    let driverScore: Int
-
-    let batteryHealth: Int
-
-    let insuranceRisk: String
+    var needsAttention: Bool {
+        if riskLevel.uppercased() == "HIGH" { return true }
+        return diagnostics.contains { $0.isCritical }
+    }
 }
