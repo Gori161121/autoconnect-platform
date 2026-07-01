@@ -2,314 +2,143 @@ openapi: 3.0.3
 
 info:
   title: AutoConnect Vehicle Intelligence API
-  description: API specification for connected vehicle intelligence, diagnostics, maintenance prediction, ownership analytics and legacy service fulfillment.
-  version: 0.2.0
+  description: >
+    Connected vehicle intelligence: diagnostics, vehicle health, maintenance
+    prediction, driver analytics, ownership intelligence, AI-explained fault
+    codes and service recommendations. A legacy marketplace layer is kept,
+    isolated under /legacy.
+  version: 0.3.0
 
 servers:
-  - url: https://api.autoconnect.local
+  - url: http://localhost:8000
 
 paths:
   /health:
     get:
-      summary: Health Check
+      summary: Health check
       responses:
         "200":
           description: Service is running
 
   /vehicles:
     get:
-      summary: Get Vehicles
+      summary: List fleet
       responses:
         "200":
-          description: Vehicle list returned
+          description: List of vehicles
+
+  /vehicles/{id}:
+    get:
+      summary: Vehicle detail
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses:
+        "200": { description: Vehicle returned }
+        "404": { description: Vehicle not found }
 
   /vehicles/{id}/health:
     get:
-      summary: Vehicle Health Score
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Composite vehicle health score
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Vehicle health score returned
+        "200": { description: Health score returned }
 
   /vehicles/{id}/diagnostics:
     get:
-      summary: Vehicle Diagnostics
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Decoded fault codes and diagnostic status
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Diagnostic information returned
+        "200": { description: Diagnostics returned }
 
   /vehicles/{id}/maintenance-prediction:
     get:
-      summary: Maintenance Prediction
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Maintenance prediction and urgency
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Maintenance prediction returned
+        "200": { description: Maintenance prediction returned }
 
   /vehicles/{id}/ev-battery:
     get:
-      summary: EV Battery Intelligence
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: EV battery summary (EV vehicles only)
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: EV battery intelligence returned
-
-  /vehicles/{id}/driver-behavior:
-    get:
-      summary: Driver Behavior Analytics
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Driver behavior analytics returned
+        "200": { description: EV battery summary returned }
+        "400": { description: Vehicle is not an EV }
 
   /vehicles/{id}/hybrid-efficiency:
     get:
-      summary: Hybrid Vehicle Efficiency
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Hybrid efficiency summary (hybrid vehicles only)
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Hybrid vehicle efficiency returned
+        "200": { description: Hybrid efficiency returned }
+        "400": { description: Vehicle is not a hybrid }
+
+  /vehicles/{id}/driver-behavior:
+    get:
+      summary: Driver behaviour score
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses:
+        "200": { description: Driver behaviour returned }
 
   /vehicles/{id}/insurance-risk:
     get:
-      summary: Insurance Risk Intelligence
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Insurance risk estimate
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Insurance risk intelligence returned
+        "200": { description: Insurance risk returned }
 
   /vehicles/{id}/valuation:
     get:
-      summary: Vehicle Valuation
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Estimated vehicle value
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Vehicle valuation returned
+        "200": { description: Valuation returned }
 
   /vehicles/{id}/intelligence-report:
     get:
-      summary: Vehicle Intelligence Report
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Combined vehicle intelligence report
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
       responses:
-        "200":
-          description: Vehicle intelligence report returned
+        "200": { description: Intelligence report returned }
+
+  /vehicles/{id}/ai-insight:
+    get:
+      summary: Plain-language AI insight for a vehicle
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses:
+        "200": { description: AI insight returned }
 
   /services/recommendations:
     get:
-      summary: Automotive Service Recommendations
+      summary: Ranked service provider recommendations
       responses:
-        "200":
-          description: Service recommendation returned
+        "200": { description: Recommendations returned }
 
   /ownership/cost-summary:
     get:
-      summary: Ownership Cost Summary
+      summary: Ownership cost breakdown
       responses:
-        "200":
-          description: Ownership cost summary returned
+        "200": { description: Cost summary returned }
 
   /legacy/customers:
     get:
-      summary: Legacy Customers
+      summary: (Legacy) list customers
       responses:
-        "200":
-          description: Legacy customer list returned
+        "200": { description: Legacy customers returned }
 
   /legacy/providers:
     get:
-      summary: Legacy Providers
+      summary: (Legacy) list providers
       responses:
-        "200":
-          description: Legacy provider list returned
+        "200": { description: Legacy providers returned }
 
   /legacy/bookings:
     get:
-      summary: Legacy Bookings
+      summary: (Legacy) list bookings
       responses:
-        "200":
-          description: Legacy booking list returned
+        "200": { description: Legacy bookings returned }
 
   /legacy/marketplace/summary:
     get:
-      summary: Legacy Marketplace Summary
+      summary: (Legacy) marketplace summary
       responses:
-        "200":
-          description: Legacy marketplace summary returned    get:
-      summary: Vehicle Valuation
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Vehicle valuation returned
-  /vehicles/{id}/hybrid-efficiency:
-    get:
-      summary: Hybrid Vehicle Efficiency
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Hybrid vehicle efficiency returned
-  /vehicles/{id}/driver-behavior:
-    get:
-      summary: Driver Behavior Analytics
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Driver behavior analytics returned
-  /vehicles/{id}/ev-battery:
-    get:
-      summary: EV Battery Intelligence
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: EV battery intelligence returned
-  /health:
-    get:
-      summary: Health Check
-      responses:
-        '200':
-          description: Service is running
-            /vehicles:
-    get:
-      summary: Get Vehicles
-      responses:
-        '200':
-          description: Vehicle list returned
-
-  /vehicles/{id}/health:
-    get:
-      summary: Vehicle Health Score
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Vehicle health score returned
-
-  /vehicles/{id}/diagnostics:
-    get:
-      summary: Vehicle Diagnostics
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Diagnostic information returned
-
-  /vehicles/{id}/maintenance-prediction:
-    get:
-      summary: Maintenance Prediction
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Maintenance prediction returned
-
-  /ownership/cost-summary:
-    get:
-      summary: Ownership Cost Summary
-      responses:
-        '200':
-          description: Ownership cost summary returned
-
-  /customers:
-    get:
-      summary: Get Customers
-      responses:
-        '200':
-          description: Customer list returned
-
-  /providers:
-    get:
-      summary: Get Providers
-      responses:
-        '200':
-          description: Provider list returned
-
-  /bookings:
-    get:
-      summary: Get Bookings
-      responses:
-        '200':
-          description: Booking list returned
-
-  /marketplace/summary:
-    get:
-      summary: Marketplace Summary
-      responses:
-        '200':
-          description: Marketplace summary returned
+        "200": { description: Legacy marketplace summary returned }
