@@ -1,37 +1,18 @@
-package mobile.android;
+package com.autoconnect.android;
 
+/** A maintenance reminder item derived from the prediction service. */
 public class MaintenanceReminder {
+    public String title;
+    public String urgency; // LOW | MEDIUM | HIGH
+    public String detail;
 
-    private String serviceType;
-    private int dueInKm;
-    private int dueInDays;
-    private String urgency;
-
-    public MaintenanceReminder(
-            String serviceType,
-            int dueInKm,
-            int dueInDays,
-            String urgency
-    ) {
-        this.serviceType = serviceType;
-        this.dueInKm = dueInKm;
-        this.dueInDays = dueInDays;
+    public MaintenanceReminder(String title, String urgency, String detail) {
+        this.title = title;
         this.urgency = urgency;
+        this.detail = detail;
     }
 
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public int getDueInKm() {
-        return dueInKm;
-    }
-
-    public int getDueInDays() {
-        return dueInDays;
-    }
-
-    public String getUrgency() {
-        return urgency;
+    public boolean isUrgent() {
+        return "HIGH".equalsIgnoreCase(urgency);
     }
 }

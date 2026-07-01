@@ -1,44 +1,23 @@
-package mobile.android;
+package com.autoconnect.android;
 
+/** A single diagnostic trouble code (DTC) result. */
 public class VehicleDiagnosticModel {
+    public String code;
+    public String description;
+    public String system;
+    public String severity; // HIGH | MEDIUM | LOW | UNKNOWN
+    public String recommendedAction;
 
-    private String faultCode;
-    private String system;
-    private String severity;
-    private String description;
-    private String recommendedAction;
-
-    public VehicleDiagnosticModel(
-            String faultCode,
-            String system,
-            String severity,
-            String description,
-            String recommendedAction
-    ) {
-        this.faultCode = faultCode;
+    public VehicleDiagnosticModel(String code, String description, String system,
+                                  String severity, String recommendedAction) {
+        this.code = code;
+        this.description = description;
         this.system = system;
         this.severity = severity;
-        this.description = description;
         this.recommendedAction = recommendedAction;
     }
 
-    public String getFaultCode() {
-        return faultCode;
-    }
-
-    public String getSystem() {
-        return system;
-    }
-
-    public String getSeverity() {
-        return severity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getRecommendedAction() {
-        return recommendedAction;
+    public boolean isCritical() {
+        return "HIGH".equalsIgnoreCase(severity);
     }
 }

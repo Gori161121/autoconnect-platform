@@ -1,44 +1,25 @@
-package mobile.android;
+package com.autoconnect.android;
 
+/** Overall status of a vehicle shown on the dashboard. */
 public class VehicleStatusModel {
+    public int vehicleId;
+    public String make;
+    public String model;
+    public int year;
+    public int mileage;
+    public String vehicleType; // ICE | EV | HYBRID
 
-    private String vin;
-    private int mileage;
-    private int healthScore;
-    private String riskLevel;
-    private boolean checkEngine;
-
-    public VehicleStatusModel(
-            String vin,
-            int mileage,
-            int healthScore,
-            String riskLevel,
-            boolean checkEngine
-    ) {
-        this.vin = vin;
+    public VehicleStatusModel(int vehicleId, String make, String model,
+                              int year, int mileage, String vehicleType) {
+        this.vehicleId = vehicleId;
+        this.make = make;
+        this.model = model;
+        this.year = year;
         this.mileage = mileage;
-        this.healthScore = healthScore;
-        this.riskLevel = riskLevel;
-        this.checkEngine = checkEngine;
+        this.vehicleType = vehicleType;
     }
 
-    public String getVin() {
-        return vin;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public int getHealthScore() {
-        return healthScore;
-    }
-
-    public String getRiskLevel() {
-        return riskLevel;
-    }
-
-    public boolean isCheckEngine() {
-        return checkEngine;
+    public String displayName() {
+        return year + " " + make + " " + model;
     }
 }
