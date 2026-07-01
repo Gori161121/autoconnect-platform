@@ -1,59 +1,40 @@
+// telemetry_parser.cpp
+// Parses raw OBD-II telemetry frames ("key=value;key=value;...") emitted by the
+// device into structured fields for upload to the backend.
+//
+// Build: g++ -std=c++17 telemetry_parser.cpp -o telemetry_parser
+// Run:   ./telemetry_parser "rpm=2200;speed_kmh=64;coolant_temp_c=92;dtc=P0420"
+
 #include <iostream>
+#include <map>
+#include <sstream>
 #include <string>
-#include <vector>
 
-struct TelemetryPayload {
-    std::string vin;
-    int mileage;
-    int rpm;
-    int engineTemperature;
-    float batteryVoltage;
-    bool checkEngine;
-};
+std::map<std::string, std::string> parseFrame(const std::string& frame) {
+    std::map<std::string, std::string> fields;
+    std::stringstream ss(frame);
+    std::string pair;
 
-bool isEngineTemperatureCritical(int temperature) {
-    return temperature >= 105;
+    while (std::getline(ss, pair, ';')) {
+        if (pair.empty()) continue;
+        auto eq = pair.find('=');
+        if (eq == std::string::npos) continue;
+        std::string key = pair.substr(0, eq);
+        std::string value = pair.substr(eq + 1);
+        fields[key] = value;
+    }
+    return fields;
 }
 
-bool isBatteryVoltageLow(float voltage) {
-    return voltage < 12.0;
-}
+int main(int argc, char* argv[]) {
+    std::string frame = (argc > 1)
+        ? argv[1]
+        : "rpm=2200;speed_kmh=64;coolant_temp_c=92;dtc=P0420";
 
-std::vector<std::string> analyzeTelemetry(const TelemetryPayload& payload) {
-    std::vector<std::string> alerts;
-
-    if (isEngineTemperatureCritical(payload.engineTemperature)) {
-        alerts.push_back("ENGINE_TEMPERATURE_CRITICAL");
+    auto fields = parseFrame(frame);
+    std::cout << "Parsed " << fields.size() << " fields:\n";
+    for (const auto& [key, value] : fields) {
+        std::cout << "  " << key << " -> " << value << "\n";
     }
-
-    if (isBatteryVoltageLow(payload.batteryVoltage)) {
-        alerts.push_back("BATTERY_VOLTAGE_LOW");
-    }
-
-    if (payload.checkEngine) {
-        alerts.push_back("CHECK_ENGINE_ACTIVE");
-    }
-
-    return alerts;
-}
-
-int main() {
-    TelemetryPayload payload = {
-        "WAUZZZ8V5KA123456",
-        128450,
-        1850,
-        108,
-        11.7,
-        true
-    };
-
-    std::vector<std::string> alerts = analyzeTelemetry(payload);
-
-    std::cout << "Telemetry alerts:" << std::endl;
-
-    for (const auto& alert : alerts) {
-        std::cout << "- " << alert << std::endl;
-    }
-
     return 0;
 }
